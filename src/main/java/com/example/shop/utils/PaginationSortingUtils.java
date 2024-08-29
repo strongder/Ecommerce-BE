@@ -1,4 +1,4 @@
-package com.shop.demo.util;
+package com.example.shop.utils;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,5 +11,4 @@ public class PaginationSortingUtils {
         Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
         return pageable;
     }
-    
 }

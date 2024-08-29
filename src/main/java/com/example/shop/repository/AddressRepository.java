@@ -10,3 +10,4 @@ import java.util.Set;
 public interface AddressRepository extends JpaRepository<Address, Long> {
     Set<Address> findByUser(User user);
 }
+

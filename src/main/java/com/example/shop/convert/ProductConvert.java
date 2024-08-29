@@ -8,6 +8,8 @@ import com.example.shop.model.Category;
 import com.example.shop.model.Product;
 import com.example.shop.repository.CategoryRepository;
 import com.example.shop.repository.ProductRepository;
+import com.example.shop.service.ReviewService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -21,11 +23,13 @@ public class ProductConvert {
 
     ModelMapper modelMapper;
     ProductRepository productRepository;
+    ObjectMapper objectMapper;
     CategoryRepository categoryRepository;
+    ReviewService reviewService;
 
     public Product convertToEntity(ProductRequest request)
     {
-        Category category = categoryRepository.findById(request.getCategoryId())
+        Category category = categoryRepository.findByName(request.getCategory())
                         .orElseThrow(()-> new AppException(ErrorResponse.CATEGORY_NOT_EXISTED));
         Product product  = modelMapper.map(request, Product.class);
         product.setCategory(category);

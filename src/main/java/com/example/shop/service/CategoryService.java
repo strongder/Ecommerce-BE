@@ -52,5 +52,28 @@ public class CategoryService{
             return modelMapper.map(category, CategoryResponse.class);
 	}
 
+    public CategoryResponse update(Long id, CategoryRequest request) {
+        Optional<Category> category = categoryRepository.findById(id);
+        if (category.isPresent()) {
+            Category categoryUpdate = category.get();
+            categoryUpdate.setName(request.getName());
+            categoryRepository.save(categoryUpdate);
+            return modelMapper.map(categoryUpdate, CategoryResponse.class);
+        } else {
+            throw new AppException(ErrorResponse.CATEGORY_NOT_EXISTED);
+        }
+    }
+
+    public void delete(Long id) {
+        Optional<Category> category = categoryRepository.findById(id);
+        if (category.isPresent()) {
+            categoryRepository.deleteById(id);
+        } else {
+            throw new AppException(ErrorResponse.CATEGORY_NOT_EXISTED);
+        }
+    }
+
+
+
 
 }

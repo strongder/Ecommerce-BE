@@ -1,41 +1,38 @@
 package com.example.shop.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "cart_line_item")
+@Table(name = "cart_item")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CartLineItem {
+public class CartItem {
 	
-	@Id 
+	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column (name = "price")
+
+	@Column (name = "quantity")
+	private int quantity;
+
 	private Double price;
-	
-	@Column (name = "amount")
-	private int amount;
-	
+
 	@Column(name = "is_delete", columnDefinition = "boolean default false")
 	private boolean isDelete;
-	
+
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@ManyToOne
 	@JoinColumn(name = "cart_id")
-	@JsonIgnore
 	private Cart cart;
-	
+
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@ManyToOne
-	@JoinColumn(name = "product_variant_id")
-	private VariantProduct variantProduct;
+	@JoinColumn(name = "var_product_id")
+	private VarProduct varProduct;
 
 }

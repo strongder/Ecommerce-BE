@@ -9,16 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-public class VariantProductResponse {
-
+public class CartItemResponse {
     private Long id;
-    private String code;
-    private String name ;
-    private int amount;
-    private String image;
-    private String color;
+    private int quantity;
     private Double price;
-    private String size;
-    private ProductResponse product;
-
+    private String name ;
+    private String image;
+    private boolean isDelete;
+    private VarProductResponse varProduct;
 }

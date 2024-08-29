@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AddressResponse {
     private Long id;
-    private String street;
     private String city;
-    private String zipCode;
+    private String district;
+    private String ward;
+    private String addressDetail;
 }

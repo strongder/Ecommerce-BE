@@ -43,40 +43,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity,
                                                    UserDetailsService userDetailsService, JwtAuthFilter filter) throws Exception {
-//        return httpSecurity.csrf().disable()
-//                .authorizeHttpRequests()
-//                    .requestMatchers("/api/auth/**", "/users/register-user").permitAll()
-//                .and()
-//                .authorizeHttpRequests()
-//                    .requestMatchers("/products/**","/users/**", "/variant-products/**",
-//                    		"/carts/**","/addresses/**","/orders/**","/categories/**").hasAnyRole("ADMIN", "USER")
-//                .and()
-//                .authorizeHttpRequests()
-//                .anyRequest().authenticated()
-//                .and()
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                .authenticationProvider(authenticationProvider(userDetailsService))
-//                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
-//                .build();
-
-//        httpSecurity.csrf(AbstractHttpConfigurer::disable)
-//                .authorizeHttpRequests(request ->{
-//                    request.requestMatchers("/api/auth/**").permitAll();
-//                })
-//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .authenticationProvider(authenticationProvider(userDetailsService))
-//                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
 
         httpSecurity.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(
-                request -> request.requestMatchers("/**","/api/auth/**").permitAll()
+                request -> request.requestMatchers("/**").permitAll()
                         // .requestMatchers("/").hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider(userDetailsService))
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
-
 
         return httpSecurity.build();
     }

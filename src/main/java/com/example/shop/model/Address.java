@@ -18,15 +18,18 @@ public class Address {
 	@Id 
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column (name = "street")
-	private String street;
-	
 	@Column (name = "city")
 	private String city ;
-	
-	private String zipCode;
-	
+
+	@Column (name = "district")
+	private String district;
+
+	@Column (name = "ward")
+	private String ward;
+
+	@Column (name = "address_detail")
+	private String addressDetail;
+
 	@Column( columnDefinition = "boolean default false")
 	private boolean isDelete;
 	
@@ -37,5 +40,4 @@ public class Address {
 	
 	@OneToMany(mappedBy = "address")
 	private Set<Order> orders;
-	
 }

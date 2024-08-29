@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @Builder
@@ -14,4 +16,7 @@ public class CategoryResponse {
 
     private Long id;
     private String name;
+    private String description;
+    private LocalDateTime createAt;
+    private LocalDateTime updateAt;
 }

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "`order`")
@@ -21,20 +21,19 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "created_at")
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-
-    private Date receiveTime;
-
-    @Column(name = "delivery_time")
-    private Date deliveryTime;
 
     @Column(name = "total")
     private Double total;
 
     @Column(name = "status")
     private String status;
+
+    @Column(name = "payment_method")
+    private String paymentMethod;
+
+    @Column(name = "created_at")
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
     @ManyToOne
     @JoinColumn(name = "address_id")
@@ -44,5 +43,7 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<OrderItem> orderItems;
 
 }

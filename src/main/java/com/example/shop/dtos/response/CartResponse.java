@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -16,6 +16,6 @@ public class CartResponse {
     private Long id;
     private Long userId;
     private int numberProduct;
-    private List<CartLineItemResponse> cartLineItems;
+    private Set<CartItemResponse> cartItems;
     private double total;
 }

@@ -22,6 +22,8 @@ public class Cart {
 	private Double total;
 	
 	private int numberProduct;
+
+	private boolean isDelete;
 	
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
@@ -32,6 +34,6 @@ public class Cart {
 	
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	@OneToMany(mappedBy = "cart")
-	private Set<CartLineItem> cartLineItems;
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<CartItem> cartItems;
 }

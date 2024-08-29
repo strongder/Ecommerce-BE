@@ -33,7 +33,7 @@ public class UserService{
 	 UserRepository userRepository;
 	 PasswordEncoder passwordEncoder;
 	 UserConvert userConvert;
-	
+
 
 	@Transactional
 	public UserResponse create(UserRequest request) {
@@ -60,7 +60,7 @@ public class UserService{
 			User user = existedUser.get();
 			//user.setUsername(request.getUsername());
 			user.setFullName(request.getFullName());
-			user.setAvatar(request.getAvatar());
+			//user.setAvatar(request.getAvatar());
 			user.setPhone(request.getPhone());
 			user.setEmail(request.getEmail());
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -69,7 +69,7 @@ public class UserService{
 		}
 		throw new AppException(ErrorResponse.USER_NOT_EXISTED);
 	}
-	
+
 	@Transactional(readOnly = true)
 	public UserResponse getCurrentUser() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -85,7 +85,7 @@ public class UserService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Transactional
 	public UserResponse signUp(UserRequest request) {
 		Optional<User> existedUser = userRepository.findByUsername(request.getUsername());

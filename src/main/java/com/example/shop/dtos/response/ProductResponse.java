@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Data
@@ -15,14 +16,15 @@ import java.time.LocalDateTime;
 public class ProductResponse {
 
     private Long id;
-    private String code;
     private String name ;
-    private String amount;
-    private String image;
+    private String stock;
+    private Float rating;
+    private List<ImageProductResponse> imageUrls;
     private String description;
     private Double price;
+    private List<VarProductResponse> varProducts;
     private CategoryResponse category;
-    private boolean status;
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private boolean isDelete;
 }

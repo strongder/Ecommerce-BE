@@ -2,10 +2,9 @@ package com.example.shop.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -13,6 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Category {
 	
 	@Id 
@@ -22,12 +22,16 @@ public class Category {
 	
 	@Column (name = "name")
 	private String name;
-	
-	@Column( columnDefinition = "boolean default false")
-	private boolean isDelete;
+
+	private String description;
+
+	private LocalDateTime createAt;
+	private LocalDateTime updateAt;
 	
 	@OneToMany(mappedBy = "category")
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
 	private List<Product> products;
-	
+
 
 }

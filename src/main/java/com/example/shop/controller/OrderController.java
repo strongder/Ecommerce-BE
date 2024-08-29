@@ -8,21 +8,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/api/orders")
+@RequestMapping("/api/v1/orders")
 @RestController
 public class OrderController {
 
-	@Autowired
-	private OrderService orderService;
+    @Autowired
+    private OrderService orderService;
 
-	@PostMapping("")
-	public ResponseEntity<OrderResponse> placeOrder(
-			@RequestBody OrderRequest orderRequest
-			)
-	{
-		OrderResponse orderDTO = orderService.placeOrder(orderRequest);
+    @PostMapping("")
+    public ResponseEntity<OrderResponse> placeOrder(
+            @RequestBody OrderRequest orderRequest
+    ) {
+        OrderResponse orderDTO = orderService.placeOrder(orderRequest);
 
-		return new ResponseEntity<>(orderDTO, HttpStatus.CREATED);
-	}
-
+        return new ResponseEntity<>(orderDTO, HttpStatus.CREATED);
+    }
 }

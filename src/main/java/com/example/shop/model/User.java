@@ -21,8 +21,6 @@ public class User {
 	@Column(name = "username", unique = true, nullable = false)
 	private String username;
 
-	private String avatar;
-
 	@Column(name = "full_name")
 	private String fullName;
 
